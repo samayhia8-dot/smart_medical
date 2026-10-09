@@ -12,6 +12,7 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen> {
 
   void selectRole(String role) {
     setState(() {
+      print("");
       selectedRole = role;
     });
   }
