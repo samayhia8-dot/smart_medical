@@ -28,12 +28,11 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen> {
     }
 
     if (selectedRole == 'patient') {
-      Navigator.pushNamed(context, '/patientLogin');
+      Navigator.pushNamed(context, '/patientRegistration');
     } else {
-      Navigator.pushNamed(context, '/doctorLogin');
+      Navigator.pushNamed(context, '/patientRegistration');
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

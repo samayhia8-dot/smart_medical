@@ -4,7 +4,7 @@ import 'screens/role_selection_screen.dart';
 // import 'screens/patient_login_screen.dart';
 // import 'screens/doctor_login_screen.dart';
 // import 'screens/sign_in_screen.dart';
-
+import 'screens/patient_registration_screen.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -18,7 +18,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) =>  Splash(), //RoleSelectionScreen(),
+        '/': (context) => Splash(),
+        '/patientRegistration': (context) =>
+        const PatientRegistrationScreen(),
 
         // '/patientLogin': (context) => const PatientLoginScreen(),
         //
