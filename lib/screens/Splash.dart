@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'Welcome_screen.dart';
-//import 'package:mini_login_welcome_screens/UI_Screen/Welcome_screen.dart';
+
 
 class Splash extends StatefulWidget{
   @override
@@ -12,7 +12,7 @@ class _SplashState extends State<Splash> {
   @override
   void initState(){
     super.initState();
-    Future.delayed( Duration(seconds: 6), () {
+    Future.delayed( Duration(seconds: 7), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => WelcomeScreen(),
@@ -42,7 +42,7 @@ class _SplashState extends State<Splash> {
             padding: const EdgeInsets.symmetric(vertical: 70),
             child: Column(
               children: [
-                Image.asset("assets/images/7c2f57a9-2c62-48d5-8175-fdd5e2cbd353(1).png",height: 120,),
+                Image.asset("assets/images/Hospital mark.png",height: 120,),
                 Text("Healix",
                   style: TextStyle(
                       color: Color(0XFF002F5F),
