@@ -1,7 +1,8 @@
 
 
 import 'package:flutter/material.dart';
-import 'widgets/login.dart';
+import '../widgets/login.dart';
+
 
 class PatientLoginScreen extends StatelessWidget {
   const PatientLoginScreen({super.key});

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_medication_system/screens/Splash.dart';
+//import 'package:smart_medication_system/screens/ahmed2.dart';
 
 import 'screens/role_selection_screen.dart';
 // import 'screens/patient_login_screen.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => Splash(),
+        '/': (context) => Splash(),//
         '/patientRegistration': (context) =>
         const PatientRegistrationScreen(),
 
