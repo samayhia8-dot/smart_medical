@@ -15,10 +15,7 @@ class PatientRegistrationScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           width: double.infinity,
-          margin: const EdgeInsets.symmetric(
-            horizontal: 12,
-            vertical: 4,
-          ),
+
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
