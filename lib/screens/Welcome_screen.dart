@@ -42,14 +42,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   children: [
                     Image.asset(
                       "assets/images/Hospital mark.png",
-                      height: 50,
+                      height: 40,
                     ),
                     Text(
                       "Healix",
                       style: TextStyle(
                         color: Color(0XFF002F5F),
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
