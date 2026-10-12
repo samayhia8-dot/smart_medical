@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smart_medication_system/screens/Splash.dart';
-
+import 'package:smart_medication_system/screens/doctor_login.dart';
+import 'package:smart_medication_system/screens/patient_login.dart';
+//import 'package:smart_medication_system/screens/ahmed2.dart';
 
 import 'screens/role_selection_screen.dart';
 // import 'screens/patient_login_screen.dart';
@@ -20,15 +22,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => Splash(),
+        '/': (context) => Splash(),//
         '/patientRegistration': (context) =>
         const PatientRegistrationScreen(),
 
-        //'/patientLogin': (context) => const PatientRegistrationScreen(),
+        '/patientLogin': (context) => const PatientRegistrationScreen(),
         //
         // '/doctorLogin': (context) => const DoctorLoginScreen(),
         //
-        // '/signIn': (context) => const SignInScreen(),
+        '/signIn': (context) => const DoctorLoginScreen(),
+        '/signIn': (context) => const PatientLoginScreen(),
       },
     );
   }
