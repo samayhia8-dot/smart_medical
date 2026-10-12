@@ -36,11 +36,7 @@ class PatientRegistrationScreen extends StatelessWidget {
               Container(
                 height: 58,
                 decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: Color(0xFF168DFF),
-                    ),
-                  ),
+                 
                 ),
                 child: Row(
                   children: [
@@ -54,10 +50,11 @@ class PatientRegistrationScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    const Icon(
-                      Icons.eco,
-                      color: green,
-                      size: 25,
+                    Image.asset(
+                      'assets/images/7c2f57a9-2c62-48d5-8175-fdd5e2cbd353(1).png',
+                      width: 30,
+                      height: 30,
+                      fit: BoxFit.contain,
                     ),
                     const SizedBox(width: 5),
                     const Text(
@@ -106,8 +103,8 @@ class PatientRegistrationScreen extends StatelessWidget {
 
                       // Profile Picture
                       Container(
-                        width: 65,
-                        height: 65,
+                        width: 100,
+                        height: 115,
                         decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Color(0xFFD5F7F6),
@@ -135,8 +132,8 @@ class PatientRegistrationScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 14,
-                            vertical: 6,
+                            horizontal: 7,
+                            vertical: 5,
                           ),
                           decoration: BoxDecoration(
                             color: green,
