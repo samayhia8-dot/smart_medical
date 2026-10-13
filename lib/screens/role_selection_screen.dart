@@ -32,8 +32,15 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen> {
     } else {
       Navigator.pushNamed(context, '/patientRegistration');
     }
-  }
-  @override
+
+      if (selectedRole == 'patient') {
+      Navigator.pushNamed(context, '/patientLogin');
+      }
+      else {
+      Navigator.pushNamed(context, '/doctorLogin');
+      }
+    }
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF4FBFE),
@@ -161,7 +168,11 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/signIn');
+                         if (selectedRole == 'patient') {
+                          Navigator.pushNamed(context, '/patientLogin');
+                        } else {
+                          Navigator.pushNamed(context, '/doctorLogin');
+                        }
                       },
                       child: const Text(
                         'Sign In',
