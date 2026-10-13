@@ -32,7 +32,8 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen> {
       Navigator.pushNamed(context, '/patientLogin');
       }
       else {
-return ;
+        Navigator.pushNamed(context, '/doctorRegistration');
+
       }
     }
    @override
