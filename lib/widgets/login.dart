@@ -63,7 +63,7 @@ class _LoginFormState extends State<LoginForm> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Image.asset(
-                            'assets/images/healix_logo.png',
+                             'assets/images/7c2f57a9-2c62-48d5-8175-fdd5e2cbd353(1).png',
                             width: 30,
                             height: 30,
                             fit: BoxFit.contain,
@@ -323,17 +323,15 @@ class _LoginFormState extends State<LoginForm> {
                       ), 
                       shape: const StadiumBorder(), 
                     ), 
-                    child: const Row( 
+                    child: Row( 
                       mainAxisAlignment: MainAxisAlignment.center, 
                       children: [ 
-                        Text( 
-                          'G', 
-                          style: TextStyle( 
-                            fontSize: 21, 
-                            fontWeight: FontWeight.bold, 
-                            color: Color(0xFF5285E8), 
-                          ), 
-                        ), 
+                        Image.asset(
+                          'assets/images/icons8-google-logo-48.png',
+                          width: 22,
+                          height: 22,
+                        ),
+
                         SizedBox(width: 16), 
                         Text( 
                           'Continue with Google', 
