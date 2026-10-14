@@ -69,8 +69,27 @@ class _DoctorRegistrationScreenState extends State<DoctorRegistrationScreen> {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.arrow_back,
-                        color: AppColors.navy, size: 22),
+
+                    IconButton(
+                      onPressed: () {
+                        if (Navigator.canPop(context)) {
+                          Navigator.pop(context);
+                        } else {
+                          Navigator.pushReplacementNamed(
+                            context,
+                            '/roleSelection',
+                          );
+                        }
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back,
+                        color: AppColors.navy,
+                        size: 22,
+                      ),
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(),
+                    ),
+
                     const Spacer(),
                     const LogoMark(width: 36),
                     const SizedBox(width: 6),

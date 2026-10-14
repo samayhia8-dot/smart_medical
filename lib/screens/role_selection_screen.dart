@@ -29,7 +29,7 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen> {
 
 
       if (selectedRole == 'patient') {
-      Navigator.pushNamed(context, '/patientLogin');
+      Navigator.pushNamed(context, '/patientRegistration');
       }
       else {
         Navigator.pushNamed(context, '/doctorRegistration');
@@ -164,10 +164,10 @@ class _RoleSelectionScreenState extends State<RoleSelectionScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                         if (selectedRole == 'patient') {
-                          Navigator.pushNamed(context, '/patientLogin');
-                        } else {
+                         if (selectedRole == 'doctor') {
                           Navigator.pushNamed(context, '/doctorLogin');
+                        } else {
+                          Navigator.pushNamed(context, '/patientLogin');
                         }
                       },
                       child: const Text(
