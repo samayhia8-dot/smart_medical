@@ -1,13 +1,22 @@
+
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+import 'package:smart_medication_system/firebase_options.dart';
 import 'package:smart_medication_system/screens/Splash.dart';
 import 'package:smart_medication_system/screens/doctor_registration.dart';
+import 'package:smart_medication_system/screens/patient_login.dart';
+import 'package:smart_medication_system/screens/doctor_login.dart';
+import 'package:smart_medication_system/screens/role_selection_screen.dart';
+import 'package:smart_medication_system/screens/patient_registration_screen.dart';
 
-import 'screens/patient_login.dart';
-import 'screens/doctor_login.dart';
-import 'screens/role_selection_screen.dart';
-import 'screens/patient_registration_screen.dart';
+Future<void> main() async {
+WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
+await Firebase.initializeApp(
+options: DefaultFirebaseOptions.currentPlatform,
+);
+
 runApp(const MyApp());
 }
 
@@ -21,21 +30,13 @@ debugShowCheckedModeBanner: false,
 initialRoute: '/',
 routes: {
 '/': (context) => Splash(),
-
-'/roleSelection': (context) =>
-const RoleSelectionScreen(),
-
+'/roleSelection': (context) => const RoleSelectionScreen(),
 '/patientRegistration': (context) =>
 const PatientRegistrationScreen(),
-
 '/doctorRegistration': (context) =>
 const DoctorRegistrationScreen(),
-
-'/patientLogin': (context) =>
-const PatientLoginScreen(),
-
-'/doctorLogin': (context) =>
-const DoctorLoginScreen(),
+'/patientLogin': (context) => const PatientLoginScreen(),
+'/doctorLogin': (context) => const DoctorLoginScreen(),
 },
 );
 }
