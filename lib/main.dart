@@ -9,35 +9,38 @@ import 'package:smart_medication_system/screens/patient_login.dart';
 import 'package:smart_medication_system/screens/doctor_login.dart';
 import 'package:smart_medication_system/screens/role_selection_screen.dart';
 import 'package:smart_medication_system/screens/patient_registration_screen.dart';
+import 'package:smart_medication_system/screens/messages_screen.dart';
 
 Future<void> main() async {
-WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
-await Firebase.initializeApp(
-options: DefaultFirebaseOptions.currentPlatform,
-);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-runApp(const MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-const MyApp({super.key});
+  const MyApp({super.key});
 
-@override
-Widget build(BuildContext context) {
-return MaterialApp(
-debugShowCheckedModeBanner: false,
-initialRoute: '/',
-routes: {
-'/': (context) => Splash(),
-'/roleSelection': (context) => const RoleSelectionScreen(),
-'/patientRegistration': (context) =>
-const PatientRegistrationScreen(),
-'/doctorRegistration': (context) =>
-const DoctorRegistrationScreen(),
-'/patientLogin': (context) => const PatientLoginScreen(),
-'/doctorLogin': (context) => const DoctorLoginScreen(),
-},
-);
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => Splash(),
+        '/roleSelection': (context) => const RoleSelectionScreen(),
+        '/patientRegistration': (context) =>
+        const PatientRegistrationScreen(),
+        '/doctorRegistration': (context) =>
+        const DoctorRegistrationScreen(),
+        '/patientLogin': (context) => const PatientLoginScreen(),
+        '/doctorLogin': (context) => const DoctorLoginScreen(),
+        '/messages': (context) => MessagesScreen(),
+      },
+    );
+  }
 }
-}
+
