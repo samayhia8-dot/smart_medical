@@ -103,7 +103,10 @@ class _LoginFormState extends State<LoginForm> {
         ),
       );
 
-      // TODO: Navigate to the patient's or doctor's home screen.
+      Navigator.pushNamed(
+        context,
+        widget.isPatient ? '/patientHome' : '/doctorHome',
+      );
 
     } on FirebaseAuthException catch (e) {
       if (!mounted) return;
