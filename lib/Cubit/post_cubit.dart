@@ -30,7 +30,7 @@ class PostCubit extends Cubit<PostState> {
     }
   }
 
-  /// سحب الشاشة لتحت: الجداد تتبدل بالقديم
+  /// سحب الشاشة لتحت
   Future<void> refreshPosts() async {
     if (_searchQuery != null) return;
     try {
@@ -45,7 +45,7 @@ class PostCubit extends Cubit<PostState> {
     }
   }
 
-  /// النزول لآخر القائمة: دفعة جديدة تتضاف تحت القديمة
+  /// النزول لآخر القائمة
   Future<void> loadMore() async {
     if (_searchQuery != null) return;
     final current = state;
@@ -121,7 +121,7 @@ class PostCubit extends Cubit<PostState> {
     }
   }
 
-  // منشورات الدكاترة فوق، وبعدهم منشورات GNews
+  /// منشورات الدكاترة فوق، وبعدهم منشورات GNews
   Future<List<PostModel>> _loadAll() async {
     final apiPosts = await _apiService.fetchPosts();
 
