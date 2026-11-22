@@ -12,7 +12,7 @@ class _SplashState extends State<Splash> {
   @override
   void initState(){
     super.initState();
-    Future.delayed( Duration(seconds: 7), () {
+    Future.delayed( Duration(seconds: 12), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => WelcomeScreen(),
@@ -52,7 +52,7 @@ class _SplashState extends State<Splash> {
                 SizedBox(height: 40,),
                 TweenAnimationBuilder<double>(
                   tween: Tween<double>(begin: 0.0, end: 1.0),
-                  duration:  Duration(seconds: 8),
+                  duration:  Duration(seconds: 12),
                   builder: (context, value, child) {
                     double rotationValue = 0.0;
                     double opacityValue = 1.0;
@@ -71,6 +71,43 @@ class _SplashState extends State<Splash> {
                       rotationValue = p * 6.28;
                       opacityValue = p <= 0.5 ? (1.0 - (p * 2)) : ((p - 0.5) * 2);
                     }
+                    // if (value <= 0.15) {
+                    //   rotationValue = 0.0;
+                    //   opacityValue = 1.0;
+                    //
+                    // } else if (value <= 0.35) {
+                    //
+                    //   double p = (value - 0.15) / 0.20;
+                    //   rotationValue = p * 6.28;
+                    //   opacityValue = 1.0;
+                    //
+                    // } else if (value <= 0.45) {
+                    //
+                    //   rotationValue = 0.0;
+                    //   opacityValue = 1.0;
+                    //
+                    // } else if (value <= 0.65) {
+                    //
+                    //   double p = (value - 0.45) / 0.20;
+                    //   rotationValue = p * 6.28;
+                    //   opacityValue = 1.0;
+                    //
+                    // } else if (value <= 0.75) {
+                    //
+                    //   rotationValue = 0.0;
+                    //   opacityValue = 1.0;
+                    //
+                    // } else if (value <= 0.95) {
+                    //
+                    //   double p = (value - 0.75) / 0.20;
+                    //   rotationValue = p * 6.28;
+                    //   opacityValue = 1.0;
+                    //
+                    // } else {
+                    //
+                    //   rotationValue = 0.0;
+                    //   opacityValue = 1.0;
+                    // }
                     return Column(
                       children: [
                         Opacity(
