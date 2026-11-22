@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:image_picker/image_picker.dart';
 import '../Model/chatai_session.dart';
-import '../Service/AI/gemini_service.dart';
+import '../services/AI/gemini_service.dart';
 import '../widgets/ai_images_source.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
