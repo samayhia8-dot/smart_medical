@@ -6,7 +6,7 @@ import 'package:smart_medication_system/Firebase/FireStore/keys.dart';
 class GeminiService {
   static GenerativeModel? _model;
 
-  // بيعمل الموديل مرة واحدة بالمفتاح اللي اتقرا من Firebase
+
   static GenerativeModel _getModel() {
     final existing = _model;
     if (existing != null) {
