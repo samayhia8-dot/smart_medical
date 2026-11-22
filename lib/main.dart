@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:smart_medication_system/firebase_options.dart';
-import 'package:smart_medication_system/screens/Splash.dart';
-import 'package:smart_medication_system/screens/doctor_registration.dart';
-import 'package:smart_medication_system/screens/patient_login.dart';
-import 'package:smart_medication_system/screens/doctor_login.dart';
-import 'package:smart_medication_system/screens/role_selection_screen.dart';
-import 'package:smart_medication_system/screens/patient_registration_screen.dart';
+import 'package:smart_medication_system/screens/welcome/Splash.dart';
+import 'package:smart_medication_system/screens/login/doctor_registration.dart';
+import 'package:smart_medication_system/screens/login/patient_login.dart';
+import 'package:smart_medication_system/screens/login/doctor_login.dart';
+import 'package:smart_medication_system/screens/welcome/role_selection_screen.dart';
+import 'package:smart_medication_system/screens/login/patient_registration_screen.dart';
 import 'package:smart_medication_system/screens/messages_screen.dart';
 
 Future<void> main() async {
