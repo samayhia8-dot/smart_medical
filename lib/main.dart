@@ -11,6 +11,10 @@ import 'package:smart_medication_system/screens/welcome/role_selection_screen.da
 import 'package:smart_medication_system/screens/login/patient_registration_screen.dart';
 import 'package:smart_medication_system/screens/messages_screen.dart';
 
+import 'screens/patient_dashboard.dart';
+import 'screens/doctor_dashboard.dart';
+import 'screens/my_doctor.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -32,13 +36,14 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => Splash(),
         '/roleSelection': (context) => const RoleSelectionScreen(),
-        '/patientRegistration': (context) =>
-        const PatientRegistrationScreen(),
-        '/doctorRegistration': (context) =>
-        const DoctorRegistrationScreen(),
+        '/patientRegistration': (context) =>const PatientRegistrationScreen(),
+        '/doctorRegistration': (context) =>const DoctorRegistrationScreen(),
         '/patientLogin': (context) => const PatientLoginScreen(),
         '/doctorLogin': (context) => const DoctorLoginScreen(),
         '/messages': (context) => MessagesScreen(),
+        '/patientHome': (context) => const PatientDashboard(),
+        '/doctorHome': (context) => const DoctorDashboard(),
+        '/myDoctor': (context) => const MyDoctorScreen(),
       },
     );
   }
