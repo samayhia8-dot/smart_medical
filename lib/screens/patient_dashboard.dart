@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../doctor_settings.dart';
+import '../emergency_screen.dart';
 import 'chatai_screen.dart';
 
 const kTeal = Color(0xFF009C9C);
