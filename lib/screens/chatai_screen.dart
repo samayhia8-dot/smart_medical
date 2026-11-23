@@ -12,14 +12,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../widgets/wave_appbar.dart';
 
-class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key});
+class Chatai extends StatefulWidget {
+  const Chatai({super.key});
 
   @override
-  State<ChatScreen> createState() => _ChatScreenState();
+  State<Chatai> createState() => _ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ChatScreenState extends State<Chatai> {
   final Color _primaryColor = const Color(0xFF0284C7);
 
   final ChatUser _currentUser = ChatUser(id: '1', firstName: 'أنت');

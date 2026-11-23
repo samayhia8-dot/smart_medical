@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Firebase/FireStore/posts_interactioons.dart';
+import '../Firebase/firestore/posts_interactioons.dart';
 
 class CommentsSheet extends StatefulWidget {
   final String postUrl;

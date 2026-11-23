@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'chatai_screen.dart';
+
 const kTeal = Color(0xFF009C9C);
 const kDark = Color(0xFF0D4A57);
 const kBg = Color(0xFFF0FBFB);
@@ -70,7 +72,12 @@ class PatientDashboard extends StatelessWidget {
       ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Chatai()),
+          );
+        },
         backgroundColor: kTeal,
         shape: const CircleBorder(),
         child: Column(
@@ -370,7 +377,8 @@ Widget _medCard(Map<String, String> m) {
                     style: TextStyle(fontSize: 11)),
               ),
               ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: kTeal, foregroundColor: Colors.white),
                 icon: const Icon(Icons.chat_bubble_outline, size: 16),

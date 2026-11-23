@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:google_generative_ai/google_generative_ai.dart';
-import 'package:smart_medication_system/Firebase/FireStore/keys.dart';
+import 'package:smart_medication_system/Firebase/firestore/keys.dart';
 
 class GeminiService {
   static GenerativeModel? _model;
