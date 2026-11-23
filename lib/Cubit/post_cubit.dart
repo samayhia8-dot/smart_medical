@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../Firebase/FireStore/posts_interactioons.dart';
+import '../Firebase/firestore/posts_interactioons.dart';
 import '../Model/api_model.dart';
 import '../services/API/apiposts_Service.dart';
 
