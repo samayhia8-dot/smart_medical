@@ -89,8 +89,9 @@ class _PatientRegistrationScreenState
       // Navigate to the patient login screen.
       Navigator.pushNamedAndRemoveUntil(
         context,
-        '/patientLogin',
+        '/patientProfile',
             (route) => false,
+
       );
     } on FirebaseAuthException catch (e) {
       if (!mounted) return;
