@@ -196,6 +196,7 @@ class _PatientRegistrationScreenState
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(11),
+
         borderSide: const BorderSide(color: Colors.red),
       ),
     );

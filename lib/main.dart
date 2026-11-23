@@ -9,7 +9,7 @@ import 'package:smart_medication_system/screens/patient_login.dart';
 import 'package:smart_medication_system/screens/doctor_login.dart';
 import 'package:smart_medication_system/screens/role_selection_screen.dart';
 import 'package:smart_medication_system/screens/patient_registration_screen.dart';
-
+import 'package:smart_medication_system/screens/doctor_profile_screen.dart';
 Future<void> main() async {
 WidgetsFlutterBinding.ensureInitialized();
 
@@ -27,16 +27,24 @@ const MyApp({super.key});
 Widget build(BuildContext context) {
 return MaterialApp(
 debugShowCheckedModeBanner: false,
+
 initialRoute: '/',
+
 routes: {
-'/': (context) => Splash(),
-'/roleSelection': (context) => const RoleSelectionScreen(),
-'/patientRegistration': (context) =>
-const PatientRegistrationScreen(),
-'/doctorRegistration': (context) =>
-const DoctorRegistrationScreen(),
-'/patientLogin': (context) => const PatientLoginScreen(),
-'/doctorLogin': (context) => const DoctorLoginScreen(),
+  '/': (context) => Splash(),
+  '/roleSelection': (context) => const RoleSelectionScreen(),
+
+  '/patientRegistration': (context) =>
+  const PatientRegistrationScreen(),
+
+  '/doctorRegistration': (context) =>
+  const DoctorRegistrationScreen(),
+
+  '/patientLogin': (context) => const PatientLoginScreen(),
+
+  '/doctorLogin': (context) => const DoctorLoginScreen(),
+
+  '/doctorProfile': (context) => const DoctorProfileScreen(),
 },
 );
 }

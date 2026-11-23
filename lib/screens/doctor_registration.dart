@@ -79,7 +79,6 @@ class _DoctorRegistrationScreenState
       final fullName = _nameController.text.trim();
       final clinicAddress = _addressController.text.trim();
 
-      // 1. Create the doctor's Firebase Authentication account.
       final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
         email: email,
@@ -92,7 +91,6 @@ class _DoctorRegistrationScreenState
         throw Exception('Could not create the doctor account.');
       }
 
-      // 2. Save the doctor's information in Cloud Firestore.
       await FirebaseFirestore.instance
           .collection('doctors')
           .doc(newUser.uid)
