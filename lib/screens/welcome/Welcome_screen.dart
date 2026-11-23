@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_medication_system/screens/role_selection_screen.dart';
+import 'package:smart_medication_system/screens/welcome/role_selection_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
