@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../doctor_settings.dart';
+import '../doctor/doctor_settings.dart';
 import '../emergency_screen.dart';
-import 'chatai_screen.dart';
+import '../chatai_screen.dart';
 
 const kTeal = Color(0xFF009C9C);
 const kDark = Color(0xFF0D4A57);
@@ -77,7 +77,7 @@ class PatientDashboard extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Chatai()),
+            MaterialPageRoute(builder: (context) => SettingsScreen()),
           );
         },
         backgroundColor: kTeal,

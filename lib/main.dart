@@ -1,27 +1,17 @@
 
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_medication_system/firebase_options.dart';
-import 'package:smart_medication_system/screens/welcome/Splash.dart';
-import 'package:smart_medication_system/screens/login/doctor_registration.dart';
-import 'package:smart_medication_system/screens/login/patient_login.dart';
-import 'package:smart_medication_system/screens/login/doctor_login.dart';
-import 'package:smart_medication_system/screens/welcome/role_selection_screen.dart';
-import 'package:smart_medication_system/screens/login/patient_registration_screen.dart';
-import 'package:smart_medication_system/screens/messages_screen.dart';
-
-import 'screens/patient_dashboard.dart';
-import 'screens/doctor_dashboard.dart';
-import 'screens/my_doctor.dart';
+import 'package:smart_medication_system/services/API/apiposts_Service.dart';
+import 'Cubit/post_cubit.dart';
+import 'Navigation_routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
   runApp(const MyApp());
 }
 
@@ -30,22 +20,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => Splash(),
-        '/roleSelection': (context) => const RoleSelectionScreen(),
-        '/patientRegistration': (context) =>const PatientRegistrationScreen(),
-        '/doctorRegistration': (context) =>const DoctorRegistrationScreen(),
-        '/patientLogin': (context) => const PatientLoginScreen(),
-        '/doctorLogin': (context) => const DoctorLoginScreen(),
-        '/messages': (context) => MessagesScreen(),
-        '/patientHome': (context) => const PatientDashboard(),
-        '/doctorHome': (context) => const DoctorDashboard(),
-        '/myDoctor': (context) => const MyDoctorScreen(),
-      },
+    return BlocProvider(
+      create: (context) => PostCubit(PostsApiService()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: navigationRoutes,
+      ),
     );
   }
 }
-

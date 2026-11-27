@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:share_plus/share_plus.dart';
-
+import 'package:smart_medication_system/screens/doctor/doctor_translator.dart';
 class EmergencyScreen extends StatelessWidget {
   const EmergencyScreen({super.key});
 
@@ -23,7 +23,7 @@ class EmergencyScreen extends StatelessWidget {
 
     if (!serviceEnabled) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enable location services')),
+         SnackBar(content: Text('enable_location_msg'.tr())),
       );
       return;
     }
@@ -38,7 +38,7 @@ class EmergencyScreen extends StatelessWidget {
     if (permission == LocationPermission.denied ||
         permission == LocationPermission.deniedForever) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Location permission denied')),
+         SnackBar(content: Text('location_denied_msg'.tr())),
       );
       return;
     }
@@ -47,7 +47,7 @@ class EmergencyScreen extends StatelessWidget {
     await Geolocator.getCurrentPosition();
 
     String location =
-        'My Location: https://www.google.com/maps/search/?api=1&query=${position.latitude},${position.longitude}';
+        '${'my_location_text'.tr()}: https://www.google.com/maps/search/?api=1&query=${position.latitude},${position.longitude}';
 
     await Share.share(location);
   }
@@ -101,8 +101,8 @@ class EmergencyScreen extends StatelessWidget {
 
             const SizedBox(height: 25),
 
-            const Text(
-              'Emergency',
+            Text(
+              'emergency_title'.tr(),
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
@@ -112,9 +112,9 @@ class EmergencyScreen extends StatelessWidget {
 
             const SizedBox(height: 10),
 
-            const Text(
-              'In case of any emergency, get help\nimmediately. You are not alone.',
-              textAlign: TextAlign.center,
+             Text(
+               'emergency_sub'.tr(),
+               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.black54,
@@ -136,7 +136,7 @@ class EmergencyScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(25),
                   ),
                 ),
-                child: const Row(
+                child:  Row(
                   children: [
                     Icon(Icons.phone, size: 30),
                     SizedBox(width: 25),
@@ -146,14 +146,14 @@ class EmergencyScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Call Emergency',
+                            'call_emergency'.tr(),
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
-                            '112 (Emergency Number)',
+                            'emergency_num_sub'.tr(),
                             style: TextStyle(fontSize: 12),
                           ),
                         ],
@@ -190,20 +190,20 @@ class EmergencyScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 18),
-                    const Expanded(
+                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Share My Location',
+                            'share_location'.tr(),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
                             ),
                           ),
                           Text(
-                            'Help us find you faster',
+                            'find_faster_sub'.tr(),
                             style: TextStyle(fontSize: 12),
                           ),
                         ],
@@ -223,7 +223,7 @@ class EmergencyScreen extends StatelessWidget {
                 color: const Color(0xFFEAF2EF),
                 borderRadius: BorderRadius.circular(18),
               ),
-              child: const Row(
+              child:  Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Icon(
@@ -237,7 +237,7 @@ class EmergencyScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Your safety matters',
+                          'safety_title'.tr(),
                           style: TextStyle(
                             color: Color(0xFF008F83),
                             fontWeight: FontWeight.bold,
@@ -245,7 +245,7 @@ class EmergencyScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 6),
                         Text(
-                          'In case of severe symptoms (chest pain, shortness of breath, loss of consciousness...), please call emergency services immediately.',
+                          'safety_desc'.tr(),
                           style: TextStyle(
                             fontSize: 12,
                             height: 1.5,

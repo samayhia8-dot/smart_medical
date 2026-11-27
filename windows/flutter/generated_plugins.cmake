@@ -3,11 +3,15 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  file_selector_windows
+  firebase_core
   cloud_firestore
   firebase_auth
-  firebase_core
+  firebase_remote_config
   firebase_storage
+  geolocator_windows
   url_launcher_windows
+  share_plus
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

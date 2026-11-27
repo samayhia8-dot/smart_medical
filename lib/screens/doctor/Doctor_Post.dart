@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../Cubit/post_cubit.dart';
-import '../widgets/wave_appbar.dart';
-import '../widgets/PostCard.dart';
+import '../../Cubit/post_cubit.dart';
+import '../../widgets/PostCard.dart';
+import '../../widgets/add_post.dart';
+import 'package:smart_medication_system/screens/doctor/doctor_translator.dart';
 
-class posts extends StatefulWidget{
+
+class DoctorPost extends StatefulWidget{
   @override
-  State<posts> createState() => _postsState();
+  State<DoctorPost> createState() => _postsState();
+
 }
 
-class _postsState extends State<posts> {
+class _postsState extends State<DoctorPost> {
   bool hasNotifications = true;
   String? userProfileImageUrl = null;
   final _searchController = TextEditingController();
@@ -23,43 +26,34 @@ class _postsState extends State<posts> {
    return Scaffold(
      backgroundColor: Colors.white,
      appBar: AppBar(
-       backgroundColor: Colors.transparent,
+       backgroundColor: Colors.white,
        elevation: 0,
        scrolledUnderElevation: 0,
-       surfaceTintColor: Colors.transparent,
-       toolbarHeight: 72,
-       bottom: PreferredSize(
-         preferredSize: Size.fromHeight(24),
-         child: SizedBox(height: 24),
-       ),
-
-       flexibleSpace: WaveBackground(),
+       toolbarHeight: 60,
        title: Row(
          children: [
-           SizedBox(width: 20,),
+           SizedBox(width: 10),
            Column(
              crossAxisAlignment: CrossAxisAlignment.start,
              children: [
-               Text("Healix",style: TextStyle(
-                   color: Colors.white,
+               Text("Healix", style: TextStyle(
+                   color: Color(0xFF1AA6B0),
                    fontSize: 20,
-                   fontWeight: FontWeight.bold
-               ),),
-               Text("Your Health .. Our Priority",style: TextStyle(
-                   color: Color(0xFFD0EDEE),
-                   fontSize: 12,
-                   fontWeight: FontWeight.w500
-               ),)
-             ],)
+                   fontWeight: FontWeight.bold)),
+               Text("Your Health .. Our Priority", style: TextStyle(
+                   color: Color(0xFF1AA6B0),
+                   fontSize: 12)),
+             ],
+           ),
          ],
        ),
        actions: [
          Stack(
            alignment: Alignment.topRight,
            children: [
-             Padding(
+             const Padding(
                padding: EdgeInsets.only(top: 10, right: 4),
-               child: Icon(Icons.notifications_none_rounded, color: Colors.white, size: 25),
+               child: Icon(Icons.notifications_none_rounded, color:Color(0xFF1AA6B0), size: 25),
              ),
              if (hasNotifications)
                Positioned(
@@ -68,7 +62,7 @@ class _postsState extends State<posts> {
                  child: Container(
                    width: 8,
                    height: 8,
-                   decoration: BoxDecoration(
+                   decoration: const BoxDecoration(
                      color: Colors.redAccent,
                      shape: BoxShape.circle,
                    ),
@@ -107,9 +101,75 @@ class _postsState extends State<posts> {
          child: Column(
            children: [
              Padding(
+               padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+               child: Row(
+                 crossAxisAlignment: CrossAxisAlignment.start,
+                 children: [
+                   Container(
+                     width: 48,
+                     height: 48,
+                     decoration: BoxDecoration(
+                       color: Color(0xFF1AA6B0),
+                       borderRadius: BorderRadius.circular(14),
+                     ),
+                     child: Icon(Icons.article_outlined, color: Colors.white),
+                   ),
+                   SizedBox(width: 12),
+                   Expanded(
+                     child: Column(
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                       children: [
+                         Text('medical_posts_title'.tr(), style: TextStyle(
+                             color: Color(0xFF1B4F7A),
+                             fontSize: 22,
+                             fontWeight: FontWeight.bold)),
+                         Text('medical_posts_sub'.tr(),
+                             style: TextStyle(color: Color(0xFF6B8299), fontSize: 12)),
+                       ],
+                     ),
+                   ),
+                   SizedBox(width: 8),
+                   GestureDetector(
+                     onTap: () async {
+                       final cubit = context.read<PostCubit>();
+
+                       final published = await showModalBottomSheet<bool>(
+                         context: context,
+                         isScrollControlled: true,
+                         backgroundColor: Colors.transparent,
+                         builder: (context) => AddPostSheet(),
+                       );
+
+                       if (published == true) {
+                         cubit.refreshPosts();
+                       }
+                     },
+                     child: Container(
+                       padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                       decoration: BoxDecoration(
+                         color: Color(0xFF1AA6B0),
+                         borderRadius: BorderRadius.circular(20),
+                       ),
+                       child: Row(
+                         children: [
+                           Icon(Icons.add, color: Colors.white, size: 18),
+                           SizedBox(width: 4),
+                           Text('add_post_btn'.tr(), style: TextStyle(
+                               color: Colors.white,
+                               fontWeight: FontWeight.w600)),
+                         ],
+                       ),
+                     ),
+                   ),
+                 ],
+               ),
+             ),
+             SizedBox(height:10 ,),
+             Padding(
                padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
                child: TextField(
                  controller: _searchController,
+                 style: TextStyle(fontSize: 12),
                  textInputAction: TextInputAction.search,
                  onSubmitted: (value) {
                    FocusScope.of(context).unfocus();
@@ -127,7 +187,7 @@ class _postsState extends State<posts> {
                  ),
                ),
              ),
-             SizedBox(height: 20,),
+             SizedBox(height: 10,),
              Expanded(
                child: BlocBuilder<PostCubit, PostState>(
                  builder: (context, state) {
@@ -157,21 +217,21 @@ class _postsState extends State<posts> {
                        child: Column(
                          mainAxisSize: MainAxisSize.min,
                          children: [
-                           Text('No results found'),
+                            Text('No results found'),
                            SizedBox(height: 12),
                            ElevatedButton(
                              onPressed: () => context.read<PostCubit>().loadPosts(),
-                             child: Text('Retry'),
+                             child:  Text('Retry'),
                            ),
                          ],
                        ),
                      ),
 
                      PostSuccess(:final posts, :final isLoadingMore) => RefreshIndicator(
+
                        onRefresh: () => context.read<PostCubit>().refreshPosts(),
                        color: Colors.black54,
                        child: NotificationListener<ScrollNotification>(
-
                          onNotification: (notification) {
                            final metrics = notification.metrics;
                            if (metrics.pixels >= metrics.maxScrollExtent - 300) {
@@ -204,3 +264,4 @@ class _postsState extends State<posts> {
    );
   }
 }
+

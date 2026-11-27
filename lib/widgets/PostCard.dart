@@ -6,6 +6,7 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Cubit/post_cubit.dart';
 import '../Model/api_model.dart';
+import '../screens/doctor/doctor_translator.dart';
 import 'comment.dart';
 
 class PostCard extends StatelessWidget {
@@ -135,30 +136,49 @@ class PostCard extends StatelessWidget {
           ),
         if (post.imageUrl.isNotEmpty)
           SizedBox(width: 12),
+        // Expanded(
+        //   child: Column(
+        //     crossAxisAlignment: CrossAxisAlignment.start,
+        //     children: [
+        //       Text(
+        //         post.title,
+        //         maxLines: 2,
+        //         overflow: TextOverflow.ellipsis,
+        //         style: TextStyle(
+        //           color: _navy,
+        //           fontWeight: FontWeight.bold,
+        //           fontSize: 14,
+        //         ),
+        //       ),
+        //       SizedBox(height: 6),
+        //       Text(
+        //         post.description,
+        //         maxLines: post.isDoctorPost ? 6 : 3,
+        //         overflow: TextOverflow.ellipsis,
+        //         style: TextStyle(color: _grey, fontSize: 12),
+        //       ),
+        //     ],
+        //   ),
+        // ),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                post.title,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
+              post.title.trApi(
+                style: const TextStyle(
                   color: _navy,
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
                 ),
               ),
-              SizedBox(height: 6),
-              Text(
-                post.description,
-                maxLines: post.isDoctorPost ? 6 : 3,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(color: _grey, fontSize: 12),
+              const SizedBox(height: 6),
+              post.description.trApi(
+                style: const TextStyle(color: _grey, fontSize: 12),
               ),
             ],
           ),
         ),
+
       ],
     );
   }

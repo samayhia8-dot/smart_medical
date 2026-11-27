@@ -155,6 +155,7 @@ class PostCubit extends Cubit<PostState> {
     }
   }
 
+
   String _cleanMessage(Object e) {
     return e.toString().replaceFirst('Exception: ', '');
   }

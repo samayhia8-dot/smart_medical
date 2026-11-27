@@ -1,11 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+
+import 'doctor_translator.dart';
 
 const kTeal = Color(0xFF009C9C);
 const kBlue = Color(0xFF0A5BA5);
 const kBg = Color(0xFFF2FCFC);
 
-class DoctorDashboard extends StatelessWidget {
+class DoctorDashboard extends StatefulWidget {
   const DoctorDashboard({super.key});
+
+  @override
+  State<DoctorDashboard> createState() => _DoctorDashboardState();
+}
+
+class _DoctorDashboardState extends State<DoctorDashboard> {
 
   final List<Map<String, String>> appointments = const [
   {
@@ -49,21 +60,7 @@ class DoctorDashboard extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
-        selectedItemColor: kTeal,
-        unselectedItemColor: kBlue,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline), label: 'My Patients'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.event_available), label: 'Appointments'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
-        ],
-      ),
+
     );
   }
 
@@ -103,25 +100,34 @@ class DoctorDashboard extends StatelessWidget {
     );
   }
 
-  Widget _welcomeCard() {
-    return Container(
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(colors: [kTeal, Color(0xFF3DBFC4)]),
-        borderRadius: BorderRadius.circular(18),
-      ),
 
-      child: Stack(
-        children: [
-          Row(
+  Widget _welcomeCard() {
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+
+    return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+      stream: FirebaseFirestore.instance.collection('doctors').doc(uid).snapshots(),
+      builder: (context, snapshot) {
+        final data = snapshot.data?.data() ?? {};
+        final name = data['fullName'] ?? '';
+        final specialty = data['specialization'] ?? '';
+        final imageUrl = data['imageUrl'] ?? '';
+
+        final ImageProvider photo = imageUrl.toString().isNotEmpty
+            ? NetworkImage(imageUrl)
+            : const AssetImage('assets/images/male_doctor.png');
+
+        return Container(
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(colors: [kTeal, Color(0xFF3DBFC4)]),
+            borderRadius: BorderRadius.circular(18),
+          ),
+          child: Row(
             children: [
-              const CircleAvatar(
+              CircleAvatar(
                 radius: 48,
                 backgroundColor: Colors.white,
-                child: CircleAvatar(
-                  radius: 44,
-                  backgroundImage: AssetImage('assets/images/male_doctor.png'),
-                ),
+                child: CircleAvatar(radius: 44, backgroundImage: photo),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -131,8 +137,8 @@ class DoctorDashboard extends StatelessWidget {
                     const Text('Good Morning!',
                         style: TextStyle(color: Colors.white, fontSize: 14)),
                     const SizedBox(height: 4),
-                    const Text('Dr. Ahmed El-Sayed',
-                        style: TextStyle(
+                    Text('Dr. $name',
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.bold)),
@@ -140,13 +146,12 @@ class DoctorDashboard extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 11)),
                     const SizedBox(height: 8),
                     Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 6),
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20)),
-                      child: const Text('Specialty: General Practitioner',
-                          style: TextStyle(
+                      child: Text('Specialty: $specialty',
+                          style: const TextStyle(
                               color: kTeal,
                               fontSize: 11,
                               fontWeight: FontWeight.bold)),
@@ -156,8 +161,8 @@ class DoctorDashboard extends StatelessWidget {
               ),
             ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -239,6 +244,7 @@ class DoctorDashboard extends StatelessWidget {
       ),
     );
   }
+
 Widget _appointmentRow(Map<String, String> a) {
   bool confirmed = a['status'] == 'Confirmed';
   Color statusColor = confirmed ? Colors.green : Colors.orange;
@@ -304,10 +310,10 @@ Widget _appointmentRow(Map<String, String> a) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children: const [
+            children: [
               Icon(Icons.bolt, color: kTeal),
               SizedBox(width: 6),
-              Text('Quick Actions',
+              Text('quick_actions'.tr(),
                   style: TextStyle(
                       fontSize: 17, fontWeight: FontWeight.bold, color: kBlue)),
             ],
@@ -315,10 +321,18 @@ Widget _appointmentRow(Map<String, String> a) {
           const SizedBox(height: 10),
           Row(
             children: [
-              _action(Icons.description, 'Posts\nView posts', Colors.lightBlue),
-              _action(Icons.event_available, 'Add Appointment', Colors.teal),
-              _action(Icons.chat_bubble_outline, 'Chat with\nPatient', Colors.deepPurple),
-              _action(Icons.auto_awesome, 'AI Assistant', Colors.green),
+              _action(Icons.description, 'dash_posts'.tr(), Colors.lightBlue,(){
+                Navigator.pushNamed(context, '/Posts');
+              }),
+              _action(Icons.local_hospital,'dash_emergency'.tr() , Colors.red,(){
+                Navigator.pushNamed(context, '/Emergency');
+              }),
+              _action(Icons.chat_bubble_outline,'dash_chat'.tr() , Colors.deepPurple,(){
+                Navigator.pushNamed(context, '/messages');
+              }),
+              _action(Icons.auto_awesome,'dash_ai'.tr() , Colors.green,(){
+                Navigator.pushNamed(context, '/AI');
+              }),
             ],
           ),
         ],
@@ -326,23 +340,26 @@ Widget _appointmentRow(Map<String, String> a) {
     );
   }
 
-  Widget _action(IconData icon, String title, Color color) {
+  Widget _action(IconData icon, String title, Color color,VoidCallback onTap) {
     return Expanded(
-      child: Container(
-        height: 90,
-        margin: const EdgeInsets.symmetric(horizontal: 3),
-        decoration: BoxDecoration(
-            color: color.withOpacity(0.12),
-            borderRadius: BorderRadius.circular(14)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, color: color),
-            const SizedBox(height: 6),
-            Text(title,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 10, color: color)),
-          ],
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          height: 90,
+          margin: const EdgeInsets.symmetric(horizontal: 3),
+          decoration: BoxDecoration(
+              color: color.withOpacity(0.12),
+              borderRadius: BorderRadius.circular(14)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, color: color),
+              const SizedBox(height: 6),
+              Text(title,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 10, color: color)),
+            ],
+          ),
         ),
       ),
     );
